@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Shows</title>
+<style>
+body {
+    background-color: #FFFFE0; /* Light Yellow */
+}
+
+.orange-line {
+    width: 100%;
+    height: 2px;
+    background-color: orange;
+    margin-bottom: 10px;
+}
+
+.container {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.show-list {
+    list-style: none;
+    padding: 0;
+}
+
+.show-item {
+    margin-bottom: 10px;
+}
+
+.remove-button {
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>My Shows</h1>
+    <div class="orange-line"></div>
+
+    <div id="password-container">
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" name="password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div id="show-input" style="display: none;"> 
+        <input type="text" id="show-name" placeholder="Enter Show Name">
+        <button onclick="addShow()">Add Show</button>
+    </div>
+
+    <div id="show-list-container" style="display: none;">
+        <ul id="show-list"></ul>
+    </div>
+</div>
+
+<script>
+function checkPassword() {
+    var password = document.getElementById("password").value;
+    if (password === "Banana10") {
+        document.getElementById("password-container").style.display = "none";
+        document.getElementById("show-input").style.display = "block"; 
+    } else {
+        alert("Incorrect Password");
+    }
+}
+
+function addShow() {
+    var showName = document.getElementById("show-name").value;
+    if (showName === "") {
+        return; 
+    }
+
+    var list = document.getElementById("show-list");
+    var listItem = document.createElement("li");
+    listItem.classList.add("show-item");
+    listItem.textContent = showName;
+
+    var removeButton = document.createElement("button");
+    removeButton.classList.add("remove-button");
+    removeButton.textContent = "Remove";
+    removeButton.onclick = function() {
+        list.removeChild(listItem);
+    };
+
+    listItem.appendChild(removeButton);
+    list.appendChild(listItem);
+
+    document.getElementById("show-name").value = ""; 
+}
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<title>My Shows</title>
+<style>
+body {
+    background-color: #FFFFE0; /* Light Yellow */
+}
+
+.orange-line {
+    width: 100%;
+    height: 2px;
+    background-color: orange;
+    margin-bottom: 10px;
+}
+
+.container {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.show-list {
+    list-style: none;
+    padding: 0;
+}
+
+.show-item {
+    margin-bottom: 10px;
+}
+
+.remove-button {
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>My Shows</h1>
+    <div class="orange-line"></div>
+
+    <div id="password-container">
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" name="password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div id="show-input" style="display: none;"> 
+        <input type="text" id="show-name" placeholder="Enter Show Name">
+        <button onclick="addShow()">Add Show</button>
+    </div>
+
+    <div id="show-list-container" style="display: none;">
+        <ul id="show-list"></ul>
+    </div>
+</div>
+
+<script>
+function checkPassword() {
+    var password = document.getElementById("password").value;
+    if (password === "Banana10") {
+        document.getElementById("password-container").style.display = "none";
+        document.getElementById("show-input").style.display = "block"; 
+    } else {
+        alert("Incorrect Password");
+    }
+}
+
+function addShow() {
+    var showName = document.getElementById("show-name").value;
+    if (showName === "") {
+        return; 
+    }
+
+    var list = document.getElementById("show-list");
+    var listItem = document.createElement("li");
+    listItem.classList.add("show-item");
+    listItem.textContent = showName;
+
+    var removeButton = document.createElement("button");
+    removeButton.classList.add("remove-button");
+    removeButton.textContent = "Remove";
+    removeButton.onclick = function() {
+        list.removeChild(listItem);
+    };
+
+    listItem.appendChild(removeButton);
+    list.appendChild(listItem);
+
+    document.getElementById("show-name").value = ""; 
+}
+</script>
+
+</body>
+</html>
