@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Shows</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8cc; /* light yellow background */
+            background-image: linear-gradient(45deg, rgba(255, 153, 51, 0.2), rgba(255, 204, 102, 0.2)); /* light orange lines */
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #ff9900;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #ff6600;
+        }
+        .show-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .show-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        .show-item button {
+            background-color: #ff3333;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+        .show-item button:hover {
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Shows</h1>
+
+        <!-- Password Section -->
+        <div id="password-section">
+            <input type="password" id="password" placeholder="Enter password" />
+            <button onclick="checkPassword()">Login</button>
+        </div>
+
+        <!-- Show Input and Show List (hidden initially) -->
+        <div id="show-section" style="display:none;">
+            <input type="text" id="show-name" placeholder="Enter your show name" />
+            <button onclick="addShow()">Add Show</button>
+
+            <h2>Your Shows</h2>
+            <ul id="show-list" class="show-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Load shows from localStorage if available
+        let shows = JSON.parse(localStorage.getItem('shows')) || [];
+
+        // Check if the password is correct
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if (password === 'Banana10') {
+                document.getElementById('password-section').style.display = 'none';
+                document.getElementById('show-section').style.display = 'block';
+                renderShows();
+            } else {
+                alert('Incorrect password!');
+            }
+        }
+
+        // Add a show to the list
+        function addShow() {
+            const showName = document.getElementById('show-name').value;
+            if (showName) {
+                shows.push(showName);
+                document.getElementById('show-name').value = ''; // Clear input
+                saveShows(); // Save to localStorage
+                renderShows();
+            }
+        }
+
+        // Remove a show from the list
+        function removeShow(index) {
+            shows.splice(index, 1);
+            saveShows(); // Save to localStorage
+            renderShows();
+        }
+
+        // Render shows to the list
+        function renderShows() {
+            const showList = document.getElementById('show-list');
+            showList.innerHTML = ''; // Clear current list
+            shows.forEach((show, index) => {
+                const li = document.createElement('li');
+                li.classList.add('show-item');
+                li.innerHTML = `${show} <button onclick="removeShow(${index})">Remove</button>`;
+                showList.appendChild(li);
+            });
+        }
+
+        // Save shows to localStorage
+        function saveShows() {
+            localStorage.setItem('shows', JSON.stringify(shows));
+        }
+    </script>
+</body>
+</html>
